@@ -1,0 +1,51 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)
+// swift-module-flags: -target arm64-apple-ios15.2-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name PagoCoreSDK
+import Foundation
+@_exported import PagoCoreSDK
+import Swift
+import _Concurrency
+public enum PagoLocale {
+  case en, ro
+  public static func == (a: PagoCoreSDK.PagoLocale, b: PagoCoreSDK.PagoLocale) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol PagoLog {
+  var message: Swift.String { get set }
+}
+public protocol PagoLogDelegate : AnyObject {
+  func willLog(_ log: PagoCoreSDK.PagoLog)
+}
+public protocol PagoBaseCar {
+}
+public protocol PagoToken {
+  var token: Swift.String { get set }
+}
+open class PagoLogConfigurator {
+  public init(isEnabled: Swift.Bool = false)
+  @objc deinit
+}
+open class PagoConfigurator {
+  public init(config: PagoCoreSDK.PagoJSONConfig, tokenDataSource: PagoCoreSDK.PagoTokenDataSource, langLocale: PagoCoreSDK.PagoLocale = .en, logConfigurator: PagoCoreSDK.PagoLogConfigurator = PagoLogConfigurator())
+  @objc deinit
+}
+public protocol PagoTokenDataSource : AnyObject {
+  func getNewToken(completion: (PagoCoreSDK.PagoOperationStatus<PagoCoreSDK.PagoToken>) -> ())
+}
+@_hasMissingDesignatedInitializers open class Pago {
+  public static func configure(config: PagoCoreSDK.PagoConfigurator, token: PagoCoreSDK.PagoToken)
+  public static func setDeviceToken(_ deviceToken: Foundation.Data, completion: @escaping (Swift.Error?) -> ())
+  @objc deinit
+}
+public protocol PagoJSONConfig {
+  var path: Swift.String { get set }
+}
+public enum PagoOperationStatus<T> {
+  case success(T)
+  case error(Swift.Error)
+}
+extension PagoCoreSDK.PagoLocale : Swift.Equatable {}
+extension PagoCoreSDK.PagoLocale : Swift.Hashable {}
