@@ -4,11 +4,11 @@
 import PackageDescription
 
 let package = Package(
-    name: "PagoCoreSPM",
+    name: "PagoCoreSDK",
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "PagoCoreSPM",
+            name: "PagoCoreSDK",
             targets: ["PagoCoreSPM"]),
     ],
     dependencies: [
@@ -23,7 +23,8 @@ let package = Package(
             path: "PagoCoreSDK.xcframework"),
         .target(
             name: "PagoCoreSPM",
-            dependencies: []),
+            dependencies: [
+                .target(name: "PagoCoreSDK")]),
         .testTarget(
             name: "PagoCoreSPMTests",
             dependencies: ["PagoCoreSPM"]),
