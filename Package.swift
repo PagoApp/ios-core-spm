@@ -20,7 +20,9 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .binaryTarget(
             name: "PagoCoreSDK",
-            path: "PagoCoreSDK.xcframework"),
+            url: "https://github.com/PagoApp/ios-core-spm/releases/download/0.0.1/PagoCoreSDK.xcframework.zip",
+            checksum: "1a1c075d7ba391174fc642481b341ab73e0dfad66d9d18ceb153890b865d56e7"
+        ),
         .target(
             name: "PagoCoreSPM",
             dependencies: [
